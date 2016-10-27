@@ -3,7 +3,9 @@ package com.exemple.profedam.memory.model;
 import com.exemple.profedam.memory.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -12,7 +14,7 @@ import java.util.Random;
 public class Partida {
 
 
-   private int[] totalCartes = {R.drawable.c0, R.drawable.c1,
+   private Integer[] totalCartes = {R.drawable.c0, R.drawable.c1,
            R.drawable.c2, R.drawable.c3,
            R.drawable.c4, R.drawable.c5,
            R.drawable.c6, R.drawable.c7,
@@ -22,7 +24,7 @@ public class Partida {
    private ArrayList<Carta> llistaCartes;
    private int numeroCartes;
 
-    public Partida(int[] totalCartes, ArrayList<Carta> llistaCartes, int numeroCartes) {
+    public Partida(Integer[] totalCartes, ArrayList<Carta> llistaCartes, int numeroCartes) {
         this.totalCartes = totalCartes;
         this.llistaCartes = llistaCartes;
         this.numeroCartes = numeroCartes;
@@ -31,7 +33,15 @@ public class Partida {
     public Partida (int numeroCartes)
     {
         this.numeroCartes = numeroCartes;
-        //TODO rellenar el ArrayList y desordenarlo
+       List<Integer> llistaTotal = Arrays.asList(totalCartes);
+
+        //TODO rellenar el ArrayList y
+        Collections.shuffle(llistaTotal);
+        for (int cont=0; cont<numeroCartes; cont++) {
+            llistaCartes.add(new Carta(llistaTotal.get(cont/2)));
+        }
+        Collections.shuffle(llistaCartes);
+
     }
 
     public int getNumeroCartes() {

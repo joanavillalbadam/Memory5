@@ -55,7 +55,7 @@ public class ImageAdapter extends BaseAdapter {
 
             /* TODO hay que visualizar la imagen de la carta
             correspondiente del ArrayList */
-             imageView.setImageResource (partida.getLlistaCartes().get(position).getFrontImage());
+             imageView.setImageResource (partida.getLlistaCartes().get(position).getActive());
             // imageView.setImageResource(R.drawable.back);
 
         } else {
@@ -64,7 +64,10 @@ public class ImageAdapter extends BaseAdapter {
 
         return imageView;
     }
-
+       /* 1) Hacer que salgan 6 pares de cartas, y no 12 sueltas
+          2) Hacer que salgan BACK
+          3) El click gire la carta.
+        */
 
 
 
