@@ -40,6 +40,7 @@ private int frontImage;
     public int devolverActiva()
     {
         //TODO devuelve la foto a mostrar en la aplicación
+        return 0;
     }
 
 
