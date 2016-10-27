@@ -37,9 +37,10 @@ public class MainActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = getIntent();
-
+        // Intent intent = getIntent();
         gv = (GridView) findViewById(R.id.gridViewMemory);
+        //TODO este 12 hay que calcularlo de alguna manera
+        partida = new Partida (12);
         ImageAdapter adapter = new ImageAdapter(this, partida);
         GeneralListener listener = new GeneralListener(this);
         gv.setAdapter(adapter);
