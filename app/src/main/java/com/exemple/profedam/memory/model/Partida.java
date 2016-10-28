@@ -36,7 +36,9 @@ public class Partida {
        List<Integer> llistaTotal = Arrays.asList(totalCartes);
 
         //TODO rellenar el ArrayList y
+                
         Collections.shuffle(llistaTotal);
+        llistaCartes = new ArrayList();
         for (int cont=0; cont<numeroCartes; cont++) {
             llistaCartes.add(new Carta(llistaTotal.get(cont/2)));
         }

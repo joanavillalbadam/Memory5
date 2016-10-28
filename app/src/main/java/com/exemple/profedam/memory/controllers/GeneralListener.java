@@ -12,9 +12,11 @@ import com.exemple.profedam.memory.model.Carta;
 /**
  * Created by ALUMNEDAM on 02/02/2016.
  */
-public class GeneralListener implements AdapterView.OnItemClickListener{
+public class GeneralListener implements AdapterView.OnItemClickListener, Runnable {
 
     private MainActivity tauler;
+    private Carta cartaOnClick;
+    private boolean listenerActive = true;
 
 
     public GeneralListener(MainActivity tauler) {
@@ -23,16 +25,30 @@ public class GeneralListener implements AdapterView.OnItemClickListener{
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-             Toast.makeText (tauler, "position" + position, Toast.LENGTH_LONG).show();
-        // view.setVisibility(View.INVISIBLE);
+            // Solo procesamos clicks si el listener es activo
 
-             Carta cartaOnClick = tauler.getPartida().getLlistaCartes().get(position);
-             cartaOnClick.girar();
-             tauler.refrescarTablero();
+        if (listenerActive) {
 
-        
+            Toast.makeText(tauler, "position" + position, Toast.LENGTH_LONG).show();
+            // view.setVisibility(View.INVISIBLE);
+
+            cartaOnClick = tauler.getPartida().getLlistaCartes().get(position);
+            cartaOnClick.girar();
+            this.listenerActive = false;
+            tauler.refrescarTablero();
+            Handler delay = new Handler();
+            delay.postDelayed(this, 2000);
+
+        }
+
             }
 
 
+    @Override
+    public void run() {
+        cartaOnClick.girar();
+        tauler.refrescarTablero();
+        listenerActive = true;
     }
+}
 
