@@ -13,31 +13,32 @@ import android.widget.ImageView;
 import com.exemple.profedam.memory.R;
 import com.exemple.profedam.memory.model.Partida;
 
+import static com.exemple.profedam.memory.R.drawable.back;
+
 public class ImageAdapter extends BaseAdapter {
 
     private Context mContext;
     private int numColumnas, anchoColumna, alturaColumna;
-    private Integer[] imatges = {
+    private Partida partida;
+    /*private Integer[] imatges = {
             R.drawable.c0, R.drawable.c1,
             R.drawable.c2, R.drawable.c3,
             R.drawable.c4, R.drawable.c5,
             R.drawable.c6, R.drawable.c7,
             R.drawable.c8, R.drawable.c9,
             R.drawable.c10, R.drawable.c11
-
-
-    };
+    };*/
 
     public ImageAdapter(Context c, Partida p) {
 
         mContext = c;
-
+        this.partida = p;
 
     }
 
 
     public int getCount() {
-        return imatges.length;
+        return partida.getNumeroCartes();
     }
 
     public Object getItem(int position) {
@@ -56,7 +57,8 @@ public class ImageAdapter extends BaseAdapter {
             imageView.setLayoutParams(new GridView.LayoutParams(280,320));
             imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             imageView.setPadding(8, 8, 8, 8);
-            imageView.setImageResource(imatges[position]);
+            imageView.setImageResource(back);
+            imageView.setImageResource(partida.getLlistaCartes().get(position).getActive());
         } else {
             imageView = (ImageView) convertView;
         }

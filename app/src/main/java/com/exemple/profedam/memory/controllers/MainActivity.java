@@ -11,7 +11,7 @@ import com.exemple.profedam.memory.model.Partida;
 public class MainActivity extends Activity {
     private GridView gv;
     private Partida partida;
-
+    private  ImageAdapter adapter;
 
     public GridView getGv() {
         return gv;
@@ -40,7 +40,9 @@ public class MainActivity extends Activity {
         Intent intent = getIntent();
 
         gv = (GridView) findViewById(R.id.gridViewMemory);
-        ImageAdapter adapter = new ImageAdapter(this, partida);
+
+        this.partida = new Partida(12);
+         adapter = new ImageAdapter(this, partida);
         GeneralListener listener = new GeneralListener(this);
         gv.setAdapter(adapter);
         gv.setOnItemClickListener(listener);
@@ -50,6 +52,15 @@ public class MainActivity extends Activity {
                 Toast.makeText(TaulerActivity.this, "" + position, Toast.LENGTH_SHORT).show();
             }
         });*/
+    }
+    public void refrescarTablero(){
+        gv.setAdapter(adapter);
+        gv.refreshDrawableState();
+
+    }
+
+    public void reiniciarPartida() {
+
     }
 }
 
