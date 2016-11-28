@@ -7,9 +7,11 @@ import com.exemple.profedam.memory.R;
  */
 public class Carta {
 
-    public enum Estat{BACK, FRONT, FIXED}
+    public enum Estat {
+        BACK, FRONT, FIXED
+    }
 
-    private final int backimage = R.drawable.back;
+    private final int backImage = R.drawable.back;
     private int frontImage;
     private Estat estat;
 
@@ -30,37 +32,38 @@ public class Carta {
         this.estat = estat;
     }
 
-
-    public void girar(){
-    switch(estat) {
-        case BACK: {
-            estat = Estat.FRONT;
-            break;
-        }
-        case FRONT: {
-            estat = Estat.BACK;
-            break;
-        }
-        }
-    }
-
-    public int getActive(){
-        int imageActive = 0;
-        switch (estat){
+    public void girar() {
+        switch (estat) {
             case BACK: {
-                imageActive = this.backimage;
+                this.estat = Estat.FRONT;
                 break;
             }
-            case FRONT: FIXED:
-            {
-                imageActive = this.frontImage;
+
+            case FRONT: {
+                this.estat = Estat.BACK;
                 break;
             }
         }
 
-    return imageActive;
     }
 
+    public int getActive() {
+        int activeImage = 0;
+        switch (estat) {
+            case BACK: {
+                activeImage = this.backImage;
+                break;
+            }
+
+            case FRONT:
+            case FIXED: {
+                activeImage = this.frontImage;
+                break;
+            }
 
 
+        }
+        return activeImage;
+
+    }
 }
