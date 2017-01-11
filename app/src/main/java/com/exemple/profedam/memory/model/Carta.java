@@ -12,8 +12,8 @@ public class Carta {
     }
 
     private final int backImage = R.drawable.back;
-    private int frontImage;
-    private Estat estat;
+    public int frontImage;
+    public Estat estat;
 
     public Carta(int frontImage) {
         this.frontImage = frontImage;
@@ -31,7 +31,7 @@ public class Carta {
     public void setEstat(Estat estat) {
         this.estat = estat;
     }
-
+//gira la carta
     public void girar() {
         switch (estat) {
             case BACK: {

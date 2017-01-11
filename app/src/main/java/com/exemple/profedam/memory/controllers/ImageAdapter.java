@@ -17,6 +17,9 @@ public class ImageAdapter extends BaseAdapter {
 
     private Context mContext;
     private Partida partida;
+    private int al;
+    private int an;
+  //  private MainActivity tauler;
    // private int numColumnas, anchoColumna, alturaColumna;
 
 
@@ -24,8 +27,14 @@ public class ImageAdapter extends BaseAdapter {
 
         mContext = c;
         partida = p;
-
-
+        //calcular las dimensiones del movil
+      WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+        Display display = windowManager.getDefaultDisplay();
+       DisplayMetrics displayMetrics = new DisplayMetrics();
+       display.getMetrics(displayMetrics);
+        //calcular la dimension de la carta a partir de las dimensiones del telefono
+        al = (int)((displayMetrics.widthPixels*0.9)/4);
+        an = (al*320/280);
 
     }
 
@@ -49,7 +58,7 @@ public class ImageAdapter extends BaseAdapter {
         ImageView imageView;
         if (convertView == null) {  // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(280,320));
+            imageView.setLayoutParams(new GridView.LayoutParams(al,an));
             imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             imageView.setPadding(8, 8, 8, 8);
 
